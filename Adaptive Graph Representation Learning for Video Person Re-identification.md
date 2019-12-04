@@ -27,9 +27,11 @@ x<sub>i</sub> 表示节点对应的特征向量。
 ### 在图上传播特征  
 <img src="https://latex.codecogs.com/gif.latex?x^{\left&space;(&space;l&space;\right&space;)}_i=\left&space;(&space;1-\alpha&space;\right&space;)x^{\left&space;(&space;l-1&space;\right&space;)}_i&plus;\alpha\sum_{j=1}^{T\cdot&space;N}A^{\left&space;(&space;l&space;\right&space;)}_{ij}F^{\left&space;(&space;l&space;\right&space;)}\left&space;(&space;x^{\left&space;(&space;l-1&space;\right&space;)}_j&space;\right&space;)" title="x^{\left ( l \right )}_i=\left ( 1-\alpha \right )x^{\left ( l-1 \right )}_i+\alpha\sum_{j=1}^{T\cdot N}A^{\left ( l \right )}_{ij}F^{\left ( l \right )}\left ( x^{\left ( l-1 \right )}_j \right )" />  
 图神经网络GNN共有L层，第l层节点i的特征向量按上式计算，A是根据该层特征计算得到的邻接矩阵，F表示第l全连接层，接收上一层的节点特征向量  
-最后对所有的特征向量加权，权重是各特征向量的全局归一化的范数  
+最后对所有的特征向量加权，权重是各特征向量的全局归一化的范数
+
 ### 损失函数
-交叉熵和三元组损失  
+交叉熵和三元组损失
+
 ### 可视化结果
 ![visual](https://raw.githubusercontent.com/terrencewayne/Paper-notes/master/images/adaptive%20graph%20representation%20learning%20for%20reid-3.png "visual result")  
 从图上看，加入图信息后，网络更关注人体部分，减少了图像干扰区域的影响
