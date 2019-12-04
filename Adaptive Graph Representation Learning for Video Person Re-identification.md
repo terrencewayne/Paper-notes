@@ -12,12 +12,14 @@ Yiming Wu, Omar El Farouk Bourahla, Xi Li, Fei Wu, and Qi Tian, Fellow, IEEE
 ![structure](https://raw.githubusercontent.com/terrencewayne/Paper-notes/master/images/adaptive%20graph%20representation%20learning%20for%20reid-1.png "structure")
 ### 如何得到Graph
 图定义为 *G* = {*V*,*A*}. *V*为点集，*A*为边集。*V* = {*vi*}, *i*∈(*1, T×N*)。  
-T为输入的图像数，N为每个图像划分的区域数，划分方法参见上图的Graph branch，共划分7块。  
+T为输入的图像数，N为每个图像划分的区域数，划分方法参见上图的Graph branch，共划分7块，每一块认为是原图对应位置的特征。  
 *V*的定义：每一条特征向量视为一个顶点；*A*的定义：根据下面两种方法计算(*TN*)×(*TN*)的邻接矩阵。
 #### pose alignment connection
 ![pac](https://raw.githubusercontent.com/terrencewayne/Paper-notes/master/images/adaptive%20graph%20representation%20learning%20for%20reid-2.png "pose alignment connection")  
 如图所示，将人划分为头、躯干、腿三部分，包含相同部分的区域将建立一条边，即邻接矩阵对应值为1。 
-$A^p_ij$
 <img src="https://latex.codecogs.com/gif.latex?A^{p}_{ij}=\left\{\begin{matrix}&space;1&space;&&space;i\neq&space;j&space;,&space;\left&space;|&space;S{i}\cap&space;S_j&space;\neq0&space;\right&space;|\\&space;0&space;&&space;otherwise&space;\end{matrix}\right." title="A^{p}_{ij}=\left\{\begin{matrix} 1 & i\neq j , \left | S{i}\cap S_j \neq0 \right |\\ 0 & otherwise \end{matrix}\right." />  
 *S*<sub>*i*</sub> 表示节点*v*<sub>*i*</sub>所包含的人体结构。
 #### feature affinity connection
+<img src="https://latex.codecogs.com/gif.latex?A^{f}_{ij}=S\left&space;(&space;x_i,x_j&space;\right&space;)=\frac{2}{e^{\left&space;\|&space;x_i-x_j&space;\right&space;\|_2}&plus;1}" title="A^{f}_{ij}=S\left ( x_i,x_j \right )=\frac{2}{e^{\left \| x_i-x_j \right \|_2}+1}" />  
+x<sub>*i*</sub> 表示节点对应的特征向量。  
+两个邻接矩阵加权得到最终的邻接矩阵（论文中直接取平均）
