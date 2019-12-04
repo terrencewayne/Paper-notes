@@ -22,7 +22,8 @@ T为输入的图像数，N为每个图像划分的区域数，划分方法参见
 #### feature affinity connection
 <img src="https://latex.codecogs.com/gif.latex?A^{f}_{ij}=S\left&space;(&space;x_i,x_j&space;\right&space;)=\frac{2}{e^{\left&space;\|&space;x_i-x_j&space;\right&space;\|_2}&plus;1}" title="A^{f}_{ij}=S\left ( x_i,x_j \right )=\frac{2}{e^{\left \| x_i-x_j \right \|_2}+1}" />  
 x<sub>i</sub> 表示节点对应的特征向量。  
-两个邻接矩阵加权得到最终的邻接矩阵（论文中直接取平均）  
+两个邻接矩阵加权得到最终的邻接矩阵（论文中直接取平均）
+
 ### 在图上传播特征  
 <img src="https://latex.codecogs.com/gif.latex?x^{\left&space;(&space;l&space;\right&space;)}_i=\left&space;(&space;1-\alpha&space;\right&space;)x^{\left&space;(&space;l-1&space;\right&space;)}_i&plus;\alpha\sum_{j=1}^{T\cdot&space;N}A^{\left&space;(&space;l&space;\right&space;)}_{ij}F^{\left&space;(&space;l&space;\right&space;)}\left&space;(&space;x^{\left&space;(&space;l-1&space;\right&space;)}_j&space;\right&space;)" title="x^{\left ( l \right )}_i=\left ( 1-\alpha \right )x^{\left ( l-1 \right )}_i+\alpha\sum_{j=1}^{T\cdot N}A^{\left ( l \right )}_{ij}F^{\left ( l \right )}\left ( x^{\left ( l-1 \right )}_j \right )" />  
 图神经网络GNN共有L层，第l层节点i的特征向量按上式计算，A是根据该层特征计算得到的邻接矩阵，F表示第l全连接层，接收上一层的节点特征向量  
