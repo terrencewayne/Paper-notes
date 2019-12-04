@@ -15,7 +15,8 @@ Yiming Wu, Omar El Farouk Bourahla, Xi Li*, Fei Wu, and Qi Tian, Fellow, IEEE
 T为输入的图像数，N为每个图像划分的区域数，划分方法参见上图的Graph branch，共划分7块。  
 *V*的定义：每一条特征向量视为一个顶点；*A*的定义：根据下面两种方法计算(*TN*)×(*TN*)的邻接矩阵。
 #### pose alignment connection
-![pac](https://raw.githubusercontent.com/terrencewayne/Paper-notes/master/images/adaptive%20graph%20representation%20learning%20for%20reid-2.png "pose alignment connection")
+![pac](https://raw.githubusercontent.com/terrencewayne/Paper-notes/master/images/adaptive%20graph%20representation%20learning%20for%20reid-2.png "pose alignment connection")  
 如图所示，将人划分为头、躯干、腿三部分，包含相同部分的区域将建立一条边，即邻接矩阵对应值为1。  
-<img src="https://latex.codecogs.com/gif.latex?A^{p}_{ij}=\left\{\begin{matrix}&space;1&space;&&space;i\neq&space;j&space;,&space;\left&space;|&space;S{i}\cap&space;S_j&space;\neq0&space;\right&space;|\\&space;0&space;&&space;otherwise&space;\end{matrix}\right." title="A^{p}_{ij}=\left\{\begin{matrix} 1 & i\neq j , \left | S{i}\cap S_j \neq0 \right |\\ 0 & otherwise \end{matrix}\right." />
+<img src="https://latex.codecogs.com/gif.latex?A^{p}_{ij}=\left\{\begin{matrix}&space;1&space;&&space;i\neq&space;j&space;,&space;\left&space;|&space;S{i}\cap&space;S_j&space;\neq0&space;\right&space;|\\&space;0&space;&&space;otherwise&space;\end{matrix}\right." title="A^{p}_{ij}=\left\{\begin{matrix} 1 & i\neq j , \left | S{i}\cap S_j \neq0 \right |\\ 0 & otherwise \end{matrix}\right." />  
+S<sub>i</sub>
 #### feature affinity connection
