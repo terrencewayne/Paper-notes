@@ -8,4 +8,4 @@ Yiming Wu, Omar El Farouk Bourahla, Xi Li*, Fei Wu, and Qi Tian, Fellow, IEEE
 ## 方法
 ### 总体框架
 通过姿势对齐和特征联结两种连接方式得到图，在通过GNN得到上下文的相互作用，通过特征转播，有意义的局部特征得到加强，噪声部分被减弱。
-![structure](images/adaptive graph representation learning for reid-1.png "structure")
+![structure](https://raw.githubusercontent.com/terrencewayne/Paper-notes/master/images/adaptive%20graph%20representation%20learning%20for%20reid-1.png "structure")
