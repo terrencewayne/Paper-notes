@@ -11,3 +11,5 @@ softmax loss可以写作
 <img src="https://latex.codecogs.com/gif.latex?L_S=-\sum_{i=1}^{m}log\frac{e^{W_{y_i}^Tx_i&plus;b_{y_i}}}{\sum&space;_{j=1}^ne^{W_j^Tx_i&plus;b_j}}" title="L_S=-\sum_{i=1}^{m}log\frac{e^{W_{y_i}^Tx_i+b_{y_i}}}{\sum _{j=1}^ne^{W_j^Tx_i+b_j}}" />  
 center loss可以写作  
 <img src="https://latex.codecogs.com/gif.latex?L_C=\frac{1}{2}\sum_{i=1}^{m}\left&space;\|&space;x_i-c_{y_i}&space;\right&space;\|_2^2" title="L_C=\frac{1}{2}\sum_{i=1}^{m}\left \| x_i-c_{y_i} \right \|_2^2" />  
+c表示特征的中心，这个式子表示C类内的特征与特征中心的距离。理想情况是，特征中心在特征改变时得到更新，即在每次迭代时要送入所有的训练数据，这样不现实。因此，这样的center loss不能直接使用。  
+文章做了两处修正，其一是**基于每个batch更新特征中心**，其二是**减少网络错误预测引起的扰动，使用α控制中心的学习率**。  
