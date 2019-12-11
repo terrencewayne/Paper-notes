@@ -7,5 +7,7 @@ softmax loss用于大多数的神经网络训练任务，本文提出了更discr
 基于mini-batch训练时，网络很难捕捉到深度特征的全局分布，一次送入全部的训练数据又不现实。作为弥补，constrastive loss和triplet loss通过样本对和三元组建立loss，但样本对和元组的选择需要很大的计算量。  
 Center Loss为每个类别的深度特征学习一个中心，训练过程中，这个中心不断更新，类内特征与中心的距离得到缩小。联合训练的意义在于，softmax loss强制各类别的特征分开，center loss强制把类内特征集聚。
 ## 方法
-softmax loss可以写作
+softmax loss可以写作  
 <img src="https://latex.codecogs.com/gif.latex?L_S=-\sum_{i=1}^{m}log\frac{e^{W_{y_i}^Tx_i&plus;b_{y_i}}}{\sum&space;_{j=1}^ne^{W_j^Tx_i&plus;b_j}}" title="L_S=-\sum_{i=1}^{m}log\frac{e^{W_{y_i}^Tx_i+b_{y_i}}}{\sum _{j=1}^ne^{W_j^Tx_i+b_j}}" />  
+center loss可以写作  
+<img src="https://latex.codecogs.com/gif.latex?L_C=\frac{1}{2}\sum_{i=1}^{m}\left&space;\|&space;x_i-c_{y_i}&space;\right&space;\|_2^2" title="L_C=\frac{1}{2}\sum_{i=1}^{m}\left \| x_i-c_{y_i} \right \|_2^2" />  
