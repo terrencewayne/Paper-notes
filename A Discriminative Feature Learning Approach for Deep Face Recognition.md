@@ -15,4 +15,4 @@ c表示特征的中心，这个式子表示C类内的特征与特征中心的距
 文章做了两处修正，其一是**基于每个batch更新特征中心**，其二是**减少网络错误预测引起的扰动，使用α控制中心的学习率**。  
 联合训练的loss表示为  
 <img src="https://latex.codecogs.com/gif.latex?L=L_S&plus;\lambda&space;L_C" title="L=L_S+\lambda L_C" />  
-![img][https://raw.githubusercontent.com/terrencewayne/Paper-notes/master/images/centerloss-1.png "image"]
+![img](https://raw.githubusercontent.com/terrencewayne/Paper-notes/master/images/centerloss-1.png "image")
