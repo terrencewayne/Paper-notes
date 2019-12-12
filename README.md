@@ -1,4 +1,4 @@
-# Repertories of Paper notes
+# The Repertory of Paper Notes
 ## Index 
   
 **[Center Loss](https://github.com/terrencewayne/Paper-notes/blob/master/A%20Discriminative%20Feature%20Learning%20Approach%20for%20Deep%20Face%20Recognition.md)**
