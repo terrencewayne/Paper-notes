@@ -5,7 +5,7 @@
 ——A Discriminative Feature Learning Approach for Deep Face Recognition  
 **[GraphReID](https://github.com/terrencewayne/Paper-notes/blob/master/Adaptive%20Graph%20Representation%20Learning%20for%20Video%20Person%20Re-identification.md)**
 ——Adaptive Graph Representation Learning for Video Person Re-identification  
-**[Loss of FaceRecognition](https://github.com/terrencewayne/Paper-notes/blob/master/Series%20of%20Softmax%20and%20Loss%20in%20Face%20Recognition.md)**  
+**[Loss of FaceRecognition](https://github.com/terrencewayne/Paper-notes/blob/master/Series%20of%20Softmax%20and%20Loss%20in%20Face%20Recognition.md)**
 ——L-Softmax/A-Softmax(SphereFace)/CosineFace/ArcFace  
 **[STGCNN](https://github.com/terrencewayne/Paper-notes/blob/master/Spatial%20Temporal%20Graph%20Convolutional%20Networks%20for%20Skeleton-Based%20Action%20Recognition.md)**
 ——Spatial Temporal Graph Convolutional Networks for Skeleton-Based Action Recognition 
