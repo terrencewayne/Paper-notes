@@ -10,3 +10,10 @@
 
 ### BP算法  
 机器学习P101
+
+### 缓解过拟合
+机器学习P105  
+早停：将数据分成训练集和验证集，训练集用于计算梯度、更新连接权和阈值，验证集用来估计训练误差，若训练集误差降低但验证集误差升高，则停止训练，同时返回具有
+最小验证集误差的连接权和阈值。  
+正则化：在误差目标函数增加一个用于描述网络复杂度的部分，例如连接权与阈值的平方和。  
+<img src="https://latex.codecogs.com/gif.latex?E=\lambda\frac{1}{m}\sum_{k=1}^mE_k&plus;(1-\lambda)\sum_iw_i^2" title="E=\lambda\frac{1}{m}\sum_{k=1}^mE_k+(1-\lambda)\sum_iw_i^2" />
