@@ -8,4 +8,6 @@
 **[Loss of FaceRecognition](https://github.com/terrencewayne/Paper-notes/blob/master/Series%20of%20Softmax%20and%20Loss%20in%20Face%20Recognition.md)**
 ——L-Softmax/A-Softmax(SphereFace)/CosineFace/ArcFace  
 **[STGCNN](https://github.com/terrencewayne/Paper-notes/blob/master/Spatial%20Temporal%20Graph%20Convolutional%20Networks%20for%20Skeleton-Based%20Action%20Recognition.md)**
-——Spatial Temporal Graph Convolutional Networks for Skeleton-Based Action Recognition 
+——Spatial Temporal Graph Convolutional Networks for Skeleton-Based Action Recognition  
+**[Neural Networks](https://github.com/terrencewayne/Paper-notes/blob/master/ML-Neural-Networks.md)**  
+**[SVM](https://github.com/terrencewayne/Paper-notes/blob/master/ML-SVM.md)**  
