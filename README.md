@@ -15,3 +15,5 @@
 ——Stacked Dense U-Nets with DualTransformers for Robust Face Alignment  
 **[Wing Loss](https://github.com/terrencewayne/Paper-notes/blob/master/Wing%20Loss%20for%20Robust%20Facial%20Landmark%20Localisation%20with%20Convolutional%20Neural%20Networks.md)**
 ——Wing Loss for Robust Facial Landmark Localisation with Convolutional Neural Networks  
+**[Adaptive Wing Loss](https://github.com/terrencewayne/Paper-notes/blob/master/Adaptive%20Wing%20Loss%20for%20Robust%20Face%20Alignment%20via%20Heatmap%20Regression.md)**
+——Adaptive Wing Loss for Robust Face Alignment via Heatmap Regression  
