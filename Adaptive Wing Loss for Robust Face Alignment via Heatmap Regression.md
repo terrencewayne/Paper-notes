@@ -13,4 +13,4 @@ Adaptive WingLoss设计如下
 <img src="https://latex.codecogs.com/gif.latex?Awing(y,\hat{y})=\left\{\begin{matrix}&space;\omega&space;ln\left&space;(&space;1&plus;\left&space;|&space;\frac{y-\hat{y}}{\varepsilon&space;}&space;\right&space;|^{\alpha-y}&space;\right&space;)&space;&&space;if\left&space;|&space;y-\hat{y}<&space;\theta&space;\right&space;|\\&space;A\left&space;|&space;y-\hat{y}-C&space;\right&space;|&&space;otherwise&space;\end{matrix}\right." title="Awing(y,\hat{y})=\left\{\begin{matrix} \omega ln\left ( 1+\left | \frac{y-\hat{y}}{\varepsilon } \right |^{\alpha-y} \right ) & if\left | y-\hat{y}< \theta \right |\\ A\left | y-\hat{y}-C \right |& otherwise \end{matrix}\right." />  
 w，θ，ε，α都是正数，根据|y-y^hat|=θ处连续可以求得A和C的值。  
 使用变量θ来控制线性和非线性的切换。|y-y^hat|<θ时，α略大于2，当y的值接近于1，α-y将约等于1，此时损失函数接近Wingloss，前景的小错误有大的影响；当y接近0且误差接近0，影响将快速下降。见图  
-![img](https://raw.githubusercontent.com/terrencewayne/Paper-notes/master/images/adaptive_wing_loss.png, "loss")
+![img](https://raw.githubusercontent.com/terrencewayne/Paper-notes/master/images/adaptive_wing_loss.png "loss")
