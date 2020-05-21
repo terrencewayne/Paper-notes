@@ -17,3 +17,5 @@
 ——Wing Loss for Robust Facial Landmark Localisation with Convolutional Neural Networks  
 **[Adaptive Wing Loss](https://github.com/terrencewayne/Paper-notes/blob/master/Adaptive%20Wing%20Loss%20for%20Robust%20Face%20Alignment%20via%20Heatmap%20Regression.md)**
 ——Adaptive Wing Loss for Robust Face Alignment via Heatmap Regression  
+**[FBNet](https://github.com/terrencewayne/Paper-notes/blob/master/FBNet:%20Hardware-Aware%20Efficient%20ConvNet%20Design%20via%20Differentiable%20Neural%20Architecture%20Search.md)**
+——FBNet: Hardware-Aware Efficient ConvNet Design via Differentiable Neural Architecture Search
