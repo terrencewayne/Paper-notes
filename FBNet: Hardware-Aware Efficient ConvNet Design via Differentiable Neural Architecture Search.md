@@ -17,7 +17,6 @@ Bichen Wu, Xiaoliang Dai, Peizhao Zhang, Yanghan Wang, Fei Sun, Yiming Wu, Yuand
 ![img](https://raw.githubusercontent.com/terrencewayne/Paper-notes/master/images/fbnet0.png "block")  
 分组卷积的时候使用channel shuffle  
 2. 包含时延的loss  
-<img src="https://latex.91maths.com/s/?JTVDdGV4dGl0JTdCTCU3RChhJTJDJTIwJTVDb21lZ2FfYSklM0RDRShhJTJDJTIwJTVDb21lZ2FfYSklNUNjZG90JTIwJTVDYWxwaGElMjBsb2coTEFUKCU1Q2FscGhhKSklNUUlN0IlNUNiZXRhJTdE" />  
 <img src="https://latex.codecogs.com/gif.latex?\textit{L}(a,&space;\omega_a)=CE(a,&space;\omega_a)\cdot&space;\alpha&space;log(LAT(\alpha))^{\beta}" title="\textit{L}(a, \omega_a)=CE(a, \omega_a)\cdot \alpha log(LAT(\alpha))^{\beta}" />  
 
 第二项(LAT(a))表示结构的时延。β调节大小幅度。  
