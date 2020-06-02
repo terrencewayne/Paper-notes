@@ -22,4 +22,6 @@
 **[FBNetV2](https://github.com/terrencewayne/Paper-notes/blob/master/FBNetV2:%20Differentiable%20Neural%20Architecture%20Search%20for%20Spatial%20and%20Channel%20Dimensions.md)**
 ——FBNetV2: Differentiable Neural Architecture Search for Spatial and Channel Dimensions  
 **[once-for-all](https://github.com/terrencewayne/Paper-notes/blob/master/OFA.md)**
-——Once-For-All: Train one network and specialize it for efficient deployment
+——Once-For-All: Train one network and specialize it for efficient deployment  
+**[DARTS](https://github.com/terrencewayne/Paper-notes/blob/master/darts.md)**
+——DARTS: Differentiable Architecture Search  
