@@ -25,3 +25,6 @@
 ——Once-For-All: Train one network and specialize it for efficient deployment  
 **[DARTS](https://github.com/terrencewayne/Paper-notes/blob/master/darts.md)**
 ——DARTS: Differentiable Architecture Search  
+**[PC-DARTS](https://github.com/terrencewayne/Paper-notes/blob/master/pc-darts.md)**
+——PC-DARTS: Partial Channel Connections for Memory-Efficient Architecture Search  
+
