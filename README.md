@@ -27,4 +27,6 @@
 ——DARTS: Differentiable Architecture Search  
 **[PC-DARTS](https://github.com/terrencewayne/Paper-notes/blob/master/pc-darts.md)**
 ——PC-DARTS: Partial Channel Connections for Memory-Efficient Architecture Search  
+**[Noisy-DARTS](https://github.com/terrencewayne/Paper-notes/blob/master/noisy-darts.md)**
+——Noisy Differentiable Architecture Search  
 
