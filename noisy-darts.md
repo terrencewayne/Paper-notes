@@ -20,5 +20,19 @@ g(y)是验证集损失，f(α<sup>skip</sup>)是对α的softmax，近似地，�
 <img src="https://latex.codecogs.com/gif.latex?y^*\approx&space;f(\alpha)\cdot&space;x&space;\qquad&space;when&space;\quad&space;\tilde&space;x&space;\ll&space;x" title="y^*\approx f(\alpha)\cdot x \qquad when \quad \tilde x \ll x" />  
 在噪声场景下，skip op结构参数的梯度为  
 <img src="https://latex.codecogs.com/gif.latex?\frac{\partial&space;L&space;}{\partial&space;\alpha^{skip}}=\frac{\partial&space;L}{\partial&space;y}\frac{\partial&space;y}{\partial&space;\alpha^{skip}}&space;=\frac{\partial&space;L}{\partial&space;y}\frac{\partial&space;f(\alpha^{skip})}{\partial&space;\alpha^{skip}}(x&plus;\tilde&space;x)" title="\frac{\partial L }{\partial \alpha^{skip}}=\frac{\partial L}{\partial y}\frac{\partial y}{\partial \alpha^{skip}} =\frac{\partial L}{\partial y}\frac{\partial f(\alpha^{skip})}{\partial \alpha^{skip}}(x+\tilde x)" />  
-因为随机噪声<img src="https://latex.codecogs.com/gif.latex?\tilde&space;x" title="\tilde x" />为梯度更新带来了不确定性，skip connection需要
-客服这个困难来与其他op竞争
+因为随机噪声<img src="https://latex.codecogs.com/gif.latex?\tilde&space;x" title="\tilde x" />为梯度更新带来了不确定性，skip connection需要克服这个困难来与其他op竞争  
+然而，并不是所有的噪声都有有效，一个基本的准则是，在压制不公平竞争的同时，不应该为梯度的期望带来偏置。梯度的期望可以写作  
+<img src="https://latex.codecogs.com/gif.latex?\mathbb{E}[\triangledown&space;_{skip}]=\mathbb{E}[\frac{\partial&space;\mathcal{L}}{\partial&space;y}\frac{\partial&space;f(\alpha^{skip})}{\partial&space;\alpha^{skip}}(x&plus;\tilde&space;x)]\approx&space;\frac{\partial&space;\mathcal{L}}{\partial&space;y^*}\frac{\partial&space;f(\alpha^{skip})}{\partial&space;\alpha^{skip}}(\mathbb{E}[x]&space;&plus;\mathbb{E}[\tilde&space;x])" title="\mathbb{E}[\triangledown _{skip}]=\mathbb{E}[\frac{\partial \mathcal{L}}{\partial y}\frac{\partial f(\alpha^{skip})}{\partial \alpha^{skip}}(x+\tilde x)]\approx \frac{\partial \mathcal{L}}{\partial y^*}\frac{\partial f(\alpha^{skip})}{\partial \alpha^{skip}}(\mathbb{E}[x] +\mathbb{E}[\tilde x])" />  
+基于上面<img src="https://latex.codecogs.com/gif.latex?\tilde&space;x&space;\ll&space;x" title="\tilde x \ll x" />的假定，把与x无关的项拿出期望算符。在skip connection中仍然有一项<img src="https://latex.codecogs.com/gif.latex?\mathbb{E}[\tilde&space;x]" title="\mathbb{E}[\tilde x]" />，为了保证梯度无偏，这一项必须等于0，所以我们要使用小且无偏的噪声，简单起见，这里只使用高斯噪声。  
+### 3. 使用噪声解决性能下降  
+我们向skip connection注入高斯噪声<img src="https://latex.codecogs.com/gif.latex?\tilde&space;x\sim&space;\mathcal{N}(\mu&space;,\sigma)" title="\tilde x\sim \mathcal{N}(\mu ,\sigma)" />  
+令边e<sub>i,j</sub> 从节点i到j，对应输入为x<sub>i</sub>。其输出记为<img src="https://latex.codecogs.com/gif.latex?o_{i,j}(x_i)" title="o_{i,j}(x_i)" />，中间节点j收集来自所有入边的输入  
+<img src="https://latex.codecogs.com/gif.latex?x_j=\sum_{i<j}o_{i,j}(x_i)" title="x_j=\sum_{i<j}o_{i,j}(x_i)" />  
+令<img src="https://latex.codecogs.com/gif.latex?\mathcal{O}=\left&space;\{&space;o_{i,j}^0,o_{i,j}^1,\cdot&space;\cdot&space;\cdot,&space;o_{i,j}^{M-1}&space;\right&space;\}" title="\mathcal{O}=\left \{ o_{i,j}^0,o_{i,j}^1,\cdot \cdot \cdot, o_{i,j}^{M-1} \right \}" />为M个候选op，特别地，令第一个元素为skip connection。注入加性噪声来得到混合输出  
+<img src="https://latex.codecogs.com/gif.latex?\bar&space;o_{i,j}(x)=\sum_{k=1}^{M-1}f(\alpha_{o^k})o^k(x)&plus;f(\alpha_{o^{skip}})o^{skip}(x&plus;\tilde&space;x)" title="\bar o_{i,j}(x)=\sum_{k=1}^{M-1}f(\alpha_{o^k})o^k(x)+f(\alpha_{o^{skip}})o^{skip}(x+\tilde x)" />  
+为了保证skip op梯度无偏且噪声足够小，我们设置<img src="https://latex.codecogs.com/gif.latex?\mu=0&space;\quad&space;\sigma=\lambda\cdot&space;std(x)" title="\mu=0 \quad \sigma=\lambda\cdot std(x)" /> 其中λ是正系数。也就是说，噪声的标准差根据样本batch而变化，设置低的λ来达到噪声足够小。  
+## Experiment
+![img](https://raw.githubusercontent.com/terrencewayne/Paper-notes/master/images/noisy-darts.png "noisy-darts visual")  
+如图所示，随着训练，skip op的权重（深绿色）显著下降。达到作者的预期
+
+
