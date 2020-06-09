@@ -29,4 +29,5 @@
 ——PC-DARTS: Partial Channel Connections for Memory-Efficient Architecture Search  
 **[Noisy-DARTS](https://github.com/terrencewayne/Paper-notes/blob/master/noisy-darts.md)**
 ——Noisy Differentiable Architecture Search  
-
+**[MobileDets](https://github.com/terrencewayne/Paper-notes/blob/master/mobiledets.md)**
+——MobileDets: Searching for Object Detection Architectures for Mobile Accelerators
