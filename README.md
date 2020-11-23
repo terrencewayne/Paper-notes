@@ -30,6 +30,6 @@
 **[Noisy-DARTS](https://github.com/terrencewayne/Paper-notes/blob/master/noisy-darts.md)**
 ——Noisy Differentiable Architecture Search  
 **[MobileDets](https://github.com/terrencewayne/Paper-notes/blob/master/mobiledets.md)**
-——MobileDets: Searching for Object Detection Architectures for Mobile Accelerators
+——MobileDets: Searching for Object Detection Architectures for Mobile Accelerators  
 **[DPatch](https://github.com/terrencewayne/Paper-notes/blob/master/DPatch.md)**
 ——DPatch: An Adversarial Patch Attack on Object Detectors
