@@ -26,5 +26,16 @@ MOT可以分为batch和online方法。batch方法在决定当前帧中框的归�
 ·Fragm：fragmentation的数量。fragmentation指一个正确的tracking中断又恢复  
 ·IDSW：ID switch的数量。  
 ·MOTA：<img src="https://latex.codecogs.com/svg.image?MOTA=1-\frac{FN&plus;FP&plus;IDSW}{GT}&space;\quad&space;\in&space;(-\infty,1]" title="MOTA=1-\frac{FN+FP+IDSW}{GT} \quad \in (-\infty,1]" />  
-·MOTP：<img src="https://latex.codecogs.com/svg.image?MOTP&space;=&space;\frac{\sum_{t,i}d_{t,i}}{\sum_tc_t}" title="MOTP = \frac{\sum_{t,i}d_{t,i}}{\sum_tc_t}" />，c_t指t帧的匹配的数量，d_t,i指正确的匹配，这个指标更关注检测性能而非跟踪。  
+·MOTP：<img src="https://latex.codecogs.com/svg.image?MOTP&space;=&space;\frac{\sum_{t,i}d_{t,i}}{\sum_tc_t}" title="MOTP = \frac{\sum_{t,i}d_{t,i}}{\sum_tc_t}" />，c_t指t帧的匹配的数量，d为检测目标i和给它分配的ground truth之间在所有帧中的平均度量距离，在这里是使用bonding box的overlap rate来进行度量（在这里MOTP是越大越好，但对于使用欧氏距离进行度量的就是MOTP越小越好，这主要取决于度量距离d的定义方式），这个指标更关注检测性能而非跟踪。  
 ### ID scores
+不重要
+### 数据集
+#### MOTChallenge
+MOTChallenge是最常用的数据集。它提供了最大的行人跟踪公开数据集。它的每个数据集提供训练集的gt，训练集和测试集的检测框（为了消除检测器性能的影响）  
+ ·MOT15. 22条视频（训练、检测各一半），总共包含各种分辨率的11283帧图像，1221个目标id和101345个框。其检测框由ACF detector给出  
+ ·MOT16/17. 14条视频（训练、检测各一半），总共包括11235帧，1342个目标id和292733个框。其检测框由Deformable Part-based Model (DPM) v5给出。  
+ ·MOT19（MOT20）. 8条视频（训练、检测各一半），平均每帧有245个人，总共包括13410帧，6869条轨迹，2259143个框。其检测框由Faster-RCNN w ResNet-101给出  
+ #### KITTI
+ KITTI关注人和车。包括21训练视频和29测试视频，总共大约有19000帧，其检测框由DPM和RegionLets给出。
+ #### 其他数据集
+ UA-DETRAC、TUD、PETS2009等等老数据集，其中一些是MOTChallenge的一部分。
