@@ -39,3 +39,34 @@ MOTChallenge是最常用的数据集。它提供了最大的行人跟踪公开�
  KITTI关注人和车。包括21训练视频和29测试视频，总共大约有19000帧，其检测框由DPM和RegionLets给出。
  #### 其他数据集
  UA-DETRAC、TUD、PETS2009等等老数据集，其中一些是MOTChallenge的一部分。
+ ## MOT中的深度学习
+ 文章的Appendix A提供了一个表格，总结了各方法在4个stage中使用了什么样的深度学习方法。
+ ### detection step的深度学习（略）
+ ### feature extraction和motion prediction中的深度学习
+ 最常用的方法是使用CNN提取视觉表征。此外，也有使用对比损失函数寻找能够区分目标的最好的feature，也有使用CNN来预测目标的运动
+ #### autoencoder
+ 使用2层的autoencoder来得到自然场景下得到的视觉特征，然后使用SVM进行affinity计算，关联任务被建模为最小生成树算法。实验证明提升比较大，但数据集不常用，难以比较
+ #### CNN提取视觉表征
+ reid特征或者分类任务的特征，结合卡尔曼滤波器的运动特征。DeepSORT使用余弦距离。  
+ [a] 使用使用判别器评估feature之间的关系，其得分结合时空关系得分，最终得分用作高斯混合概率假设密度滤波器中的似然。  
+ [b] 复用了检测器的特征，按照反向最近邻关联  
+ [c] 区分高速细胞和低速细胞，低速细胞仅使用运动特征，高速细胞结合视觉特征和运动特征。同时包含优化跟踪的过程，通过组合误中断的track来减少FP和FN  
+ [d] 使用CNN和AlphaPose提取视觉特征和姿态特征，结合tracklet历史信息送入LSTM来计算相似度  
+   
+ [a] Z. Fu, F. Angelini, S. M. Naqvi, J. A. Chambers, Gm-phd filter based online multiple human tracking using deep discriminative correlation
+matching, in: 2018 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), IEEE, 2018, pp. 4299–4303.  
+[b] F. Pernici, F. Bartoli, M. Bruni, A. Del Bimbo, Memory based online learning of deep representations from video streams, in: Proceedings of
+the IEEE Conference on Computer Vision and Pattern Recognition, 2018, pp. 2324–2334  
+ [c] H. Hu, L. Zhou, Q. Guan, Q. Zhou, S. Chen, An automatic tracking method for multiple cells based on multi-feature fusion, IEEE Access 6
+(2018) 69782–69793.  
+[d] N. Ran, L. Kong, Y. Wang, Q. Liu, A robust multi-athlete tracking algorithm by exploiting discriminant features and long-term dependencies,
+in: International Conference on Multimedia Modeling, Springer, 2019, pp. 411–423.  
+#### 孪生网络
+使用对比学习训练  
+[a]  设计了新的CNN结构Quad-CNN，接受4个image patches作为输入，前三个来自同一个目标，时间上升序，后一个来自另外的目标。网络使用自定义的loss训练，结合detection之间的时序距离信息，视觉特征和bbox位置。测试阶段接收两个detection，预测两者属于同一目标的概率  
+[b] 向网络输入三个样本，两个来自相同目标（positive pair），一个来自另外的样本（negtiave pair），使用triplet loss训练。推理阶段，基于视觉表征的相似度同运动稳定性结合，运动稳定性基于
+
+[a]  J. Son, M. Baek, M. Cho, B. Han, Multi-object tracking with quadruplet convolutional neural networks, in: Proceedings of the IEEE
+conference on computer vision and pattern recognition, 2017, pp. 5620–5629  
+[b] Z. Zhou, J. Xing, M. Zhang, W. Hu, Online multi-target tracking with tensor-based high-order graph matching, in: 2018 24th International
+Conference on Pattern Recognition (ICPR), IEEE, 2018, pp. 1809–1814.
