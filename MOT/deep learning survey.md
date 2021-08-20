@@ -64,9 +64,71 @@ in: International Conference on Multimedia Modeling, Springer, 2019, pp. 411–4
 #### 孪生网络
 使用对比学习训练  
 [a]  设计了新的CNN结构Quad-CNN，接受4个image patches作为输入，前三个来自同一个目标，时间上升序，后一个来自另外的目标。网络使用自定义的loss训练，结合detection之间的时序距离信息，视觉特征和bbox位置。测试阶段接收两个detection，预测两者属于同一目标的概率  
-[b] 向网络输入三个样本，两个来自相同目标（positive pair），一个来自另外的样本（negtiave pair），使用triplet loss训练。推理阶段，基于视觉表征的相似度同运动稳定性结合，运动稳定性基于
+[b] 向网络输入三个样本，两个来自相同目标（positive pair），一个来自另外的样本（negtiave pair），使用triplet loss训练。推理阶段，基于视觉表征的相似度同运动稳定性和潜在空间位置结合，运动稳定性基于预测下一个位置的得分，假设是线性运动，关联匹配通过计算3维张量的相似度解决  
 
 [a]  J. Son, M. Baek, M. Cho, B. Han, Multi-object tracking with quadruplet convolutional neural networks, in: Proceedings of the IEEE
 conference on computer vision and pattern recognition, 2017, pp. 5620–5629  
 [b] Z. Zhou, J. Xing, M. Zhang, W. Hu, Online multi-target tracking with tensor-based high-order graph matching, in: 2018 24th International
-Conference on Pattern Recognition (ICPR), IEEE, 2018, pp. 1809–1814.
+Conference on Pattern Recognition (ICPR), IEEE, 2018, pp. 1809–1814.  
+#### 其他复杂方式
+[a] 将检测器的分类结果和ROI pooling结果结合在一起作为特征，送入LSTM去学习detections之间的联系  
+[b] 使用3个RNN，第一个reid，第二个预测轨迹，第三个学习同一场景下不同目标的交互，最后这三个RNN的输出作为一个LSTM的输入进行affinity计算。  
+[c] 为每条track训练一个CNN, [d] 为每条track训练一个random ferns分类器，区分同目标和其他目标  
+[e] 使用隐马尔科夫模型计算motion
+
+[a] Y. Lu, C. Lu, C.-K. Tang, Online video object detection using association lstm, in: Proceedings of the IEEE International Conference on
+Computer Vision, 2017, pp. 2344–2352.  
+[b] A. Sadeghian, A. Alahi, S. Savarese, Tracking the untrackable: Learning to track multiple cues with long-term dependencies, in: Proceedings
+of the IEEE International Conference on Computer Vision, 2017, pp. 300–311.  
+[c] Q. Chu, W. Ouyang, H. Li, X. Wang, B. Liu, N. Yu, Online multi-object tracking using cnn-based single object tracker with spatial-temporal
+attention mechanism, in: Proceedings of the IEEE International Conference on Computer Vision, 2017, pp. 4836–4845.  
+[d] S. J. Kim, J.-Y. Nam, B. C. Ko, Online tracker optimization for multi-pedestrian tracking using a moving vehicle camera, IEEE Access 6
+(2018) 48675–48687.  
+[e] M. Ullah, F. Alaya Cheikh, A directed sparse graphical model for multi-target tracking, in: Proceedings of the IEEE Conference on Computer
+Vision and Pattern Recognition Workshops, 2018, pp. 1816–1823.
+#### CNN预测motion：相关滤波器
+没啥东西
+### Affinity计算中的深度学习
+#### RNN与LSTM
+用LSTM计算tracklets和detections之间的affinity score，输入VGG16特征等
+#### MHT框架下使用LSTM
+在多假设跟踪方法（MHT）中，首先为每个候选目标的潜在track假设建立一棵树，然后计算每条track的似然，具有最大似然的track组合作为解。这些方法大多使用LSTM来对树进行操作
+#### 其它循环网络
+[a] 使用两层MLP来计算tracklet和detection之间的得分
+
+[a] H. Kieritz, W. Hubner, M. Arens, Joint detection and online multi-object tracking, in: Proceedings of the IEEE Conference on Computer
+Vision and Pattern Recognition Workshops, 2018, pp. 1459–1467.  
+#### CNN计算affinity得分
+[a] 把关联任务建模为最小切割问题：可被视为图聚类问题，每一个簇代表一个被跟踪的目标。边的代价则是两个detection之间的相似度。此相似度是reid/相关匹配/时空关系的组合。另一特点是其reid用两张图片及其pose分割的相应图作为输入，输出真或假  
+[b] 输出detection与轨迹预测box的affinity得分，轨迹预测box由深度连续条件随机场得到。最高得分的detection连到tracklet上，如果发生冲突则使用匈牙利匹配。  
+
+
+[a] S. Tang, M. Andriluka, B. Andres, B. Schiele, Multiple people tracking by lifted multicut and person re-identification, in: Proceedings of the
+IEEE Conference on Computer Vision and Pattern Recognition, 2017, pp. 3539–3548.  
+[b] H. Zhou, W. Ouyang, J. Cheng, X. Wang, H. Li, Deep continuous conditional random fields with asymmetric inter-object constraints for
+online multi-object tracking, IEEE Transactions on Circuits and Systems for Video Technology.  
+#### 孪生CNN
+[a] 在解决短track连成长track的过程中，使用孪生网络来计算代价。其输出两幅图片的相似度、以及额外的两层去预测身份。在测试序列上进一步进行无监督训练，从local短track中选择正负样本对
+
+[a] L. Ma, S. Tang, M. J. Black, L. V. Gool, Customized multi-person tracker, in: Computer Vision – ACCV 2018, Springer International
+Publishing, 2018.  
+### Association中的深度学习
+#### RNN
+[a] 使用RNN来预测每个track在每帧中的存在性，帮助决策什么时候开始和结束
+[b] 使用GRU为断开的tracklet提取特征，通过特征距离决定是否连接两条track
+
+[a] A. Milan, S. H. Rezatofighi, A. Dick, I. Reid, K. Schindler, Online multi-target tracking using recurrent neural networks, in: Thirty-First
+AAAI Conference on Artificial Intelligence, 2017.  
+[b] C. Ma, C. Yang, F. Yang, Y. Zhuang, Z. Zhang, H. Jia, X. Xie, Trajectory factory: Tracklet cleaving and re-connection by deep siamese bi-gru
+for multiple object tracking, in: 2018 IEEE International Conference on Multimedia and Expo (ICME), IEEE, 2018, pp. 1–6.  
+#### MLP
+没啥东西
+#### 强化学习
+[a] 使用多个深度RL代理来管理多个跟踪目标，决定何时开始和终止track以及影响卡尔曼滤波器的决策，这些代理使用3层隐藏层的MLP实现  
+[b] 使用合作环境下的多个深度RL agents来管理。主要由两部分组成：预测网络和决策网络。预测网路接收新图片、目标、目标最近轨迹信息，预测目标在新一帧的运动。决策网络包括每个目标的代理，每个agent基于自身，邻居和环境做出决策，agents与环境的交互由最大化效益函数来实现。每个agent由trajectory，表观特征和当前位置实现，环境由新一帧的detections实现。决策网路的输入包括每个track目标的预测位置，最近邻目标和最近邻检测，根据检测的可靠性和目标的遮挡状态来采取如下决策之一：使用prediction和detection更新轨迹和表观特征、忽略检测仅使用预测来更新track、检测到遮挡或者删除track。agents使用MDNet特抽取特征部分加上三层卷积实现，实验证明比线性运动模型和匈牙利匹配效果好，但ids比较大
+
+[a] P. Rosello, M. J. Kochenderfer, Multi-agent reinforcement learning for multi-object tracking, in: Proceedings of the 17th International
+Conference on Autonomous Agents and MultiAgent Systems, International Foundation for Autonomous Agents and Multiagent Systems,
+2018, pp. 1397–1404.  
+[b] L. Ren, J. Lu, Z. Wang, Q. Tian, J. Zhou, Collaborative deep reinforcement learning for multi-object tracking, in: Proceedings of the European
+Conference on Computer Vision (ECCV), 2018, pp. 586–602.  
